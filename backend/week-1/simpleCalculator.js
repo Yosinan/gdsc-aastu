@@ -4,26 +4,27 @@
 
 console.log('Simple Calculator');
 
-const x = prompt('Enter the 1st number');
+const x = parseFloat(prompt('Enter the 1st number'));
 const oprator = prompt('Enter the operator (+, -, *, /, %)');
-const y = prompt('Enter the 2nd number');
+const y = parseFloat(prompt('Enter the 2nd number'));
+let res;
 
-
-switch(operator) {
-	case '+':
-		console.log('Sum = '+ (x + y));
-		break;
-	case '-':
-		console.log('Difference = ' + (x - y));
-		break;
-	case '*':
-		console.log('Product = '+  (x * y));
-		break;
-	case '/':
-		console.log('Quotient = ' + (x / y));
-	case '%':
-		console.log('Modulus = ' + (x % y));
-		break;
-	default:
-		console.log('Invalid input');
+switch (operator) {
+  case '+':
+    res = x + y;
+    break;
+  case '-':
+    res = x - y;
+    break;
+  case '*':
+    res = x * y;
+    break;
+  case '/':
+    res = x / y;
+  case '%':
+    res = x % y;
+    break;
+  default:
+    console.log('Invalid input');
 }
+console.log('${x} ${operator} ${y} = ${res}');
