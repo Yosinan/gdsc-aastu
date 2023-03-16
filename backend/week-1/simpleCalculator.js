@@ -8,19 +8,18 @@ const operator = prompt('Enter the operator (+, -, *, /, %) ');
 const y = parseFloat(prompt('Enter the 2nd number '));
 let res;
 
-
 switch (operator) {
   case '+':
     res = x + y;
-    
+
     break;
   case '-':
     res = x - y;
-    
+
     break;
   case '*':
     res = x * y;
-   
+
     break;
   case '/':
     res = x / y;
@@ -31,4 +30,4 @@ switch (operator) {
   default:
     console.log('Invalid input');
 }
-console.log(x, operator, y, '=' , res);
+console.log(x, operator, y, '=', res);
