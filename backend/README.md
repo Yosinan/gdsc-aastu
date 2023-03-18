@@ -1,2 +1,5 @@
 # GDSC AASTU Back-End
-## Project on Backend Development
+## JavaScript powered backend web application using
+- Node.js
+- Express.js
+- MongoDB
