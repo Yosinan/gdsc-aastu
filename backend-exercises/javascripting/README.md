@@ -1,1 +1,2 @@
-JavaScript Exercises
+# GDSC
+- JavaScript Exercises
