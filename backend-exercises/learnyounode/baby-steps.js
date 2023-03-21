@@ -1,2 +1,7 @@
 //console.log(process.argv);
-console.log(Number(process.argv[3]) + Number(process.argv[4]));
+var res = 0;
+for (let x = 2; x < process.argv.length; x++) {
+	res += Number(process.argv[x]);
+}
+//printing the sum
+console.log(res);
