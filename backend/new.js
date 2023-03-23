@@ -1,5 +1,8 @@
-function doubl (arr) {
-arr.map(arr, (x) => x *2 )
+class ex {
+function dou (arr) {
+console.log(arr.map(arr, (x) => x *2 ))
 }
-module.exports = doubl
+}
+
+module.exports = ex
 
