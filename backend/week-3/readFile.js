@@ -1,8 +1,7 @@
-const fs = require('fs');
+const {readFile} = require('fs');
 
-fs.readFile('./testFile.txt', 'utf8', (err, data) => {
+readFile('./testFile.txt', 'utf8', (err, data) => {
     if (err) { console.error(err) }
     console.log(data)
-
 });
 
