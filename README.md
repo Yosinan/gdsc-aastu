@@ -1,2 +1,2 @@
 # GDSC AASTU Back-End
-## Project on Backend Development
+## Project on Back-end Development
