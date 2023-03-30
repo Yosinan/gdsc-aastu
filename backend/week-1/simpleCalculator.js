@@ -1,4 +1,4 @@
-#!/bin/node
+
 // a simple calculator
 
 console.log('Simple Calculator');
