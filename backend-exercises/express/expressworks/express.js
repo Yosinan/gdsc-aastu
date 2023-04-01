@@ -6,5 +6,4 @@ const port = process.argv[2]
 app.get('/home', (req, res) => {
         res.send("Hello World!")
 })
-
-app.listen(port)
+app.listen(port, () => console.log(`app listening at port ${port}`))
