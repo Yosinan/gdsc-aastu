@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-   
-    "test" : "node test.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "yos",
+  "keywords": [],
+  "author": "",
   "license": "ISC"
 }
