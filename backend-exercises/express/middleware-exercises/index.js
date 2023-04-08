@@ -1,37 +1,56 @@
-//importing/requiring necessary modules
-const express = require('express')
-const bodyParser = require('body-parser')
-const data = require('./data.json')
+const express = require("express");
+const fs = require("fs/promises");
+const bodyParser = require("body-parser");
 
-//creating express app
-const app = express()
-app.use(bodyParser.json())
+const vipRoute = (req, res, next) => {
+  const queryName = "vip_user";
+  if (req.path === "/auth_only") {
+    if (!req.query.name) {
+      return res.status(401).send("enter a name that is in the query string.");
+    }
+    if (req.query.name !== expectedName) {
+      return res.status(403).redirect("/protected.html");
+    }
+  }
+  next();
+};
 
-//signin route that handles a POST request
-app.post('/signin', (req, res) => {
-	const { email, password } = req.body;
-
-	if (!email || !password) {
-    return res.status(400).json({ error: 'Email and password are required' });
+(async () => {
+  let db;
+  try {
+    const data = await fs.readFile("user.json", "utf-8");
+    db = JSON.parse(data);
+  } catch (e) {
+    console.error(e.message);
+    process.exit(1);
   }
 
-	//compare the body's password with if the user is found in the array of users object
-	const user = data.users.find(u => u.email === email);
+  const app = express();
+  app.use(vipRoute);
+  app.use(bodyParser.urlencoded({ extended: false }));
+  app.use(express.static("static"));
 
-	if(!user) {
-		return res.status(401).json({ error: 'invalid email'})
-	}
+  app.post("/signin", (req, res) => {
+    const email = req.body.email;
+    const password = req.body.password;
+    const user = database.find((user) => user.email === email);
+    if (user) {
+      if (user.password === password) {
+        res.status(200).redirect("/index.html");
+      } else {
+        res.status(401).redirect("/incorrect_password.html");
+      }
+    } else {
+      res.status(404).redirect("/signup.html");
+    }
+  });
 
-	if (user.password !== password) {
-    return res.status(401).json({ error: 'Invalid password' });
-  }
+  app.get("/auth_only", (req, res) => {
+    res.status(200).redirect("/secret.html");
+  });
 
-  req.session.user = user;
-  return res.status(200).json({ message: 'You have Signed in successfully !' });
-});
-
-const port = 3000;
-
-app.listen(port, () => {
-	console.log(`Server is listening on port ${port}`);
-});
+  const PORT = process.env.PORT || 3300;
+  app.listen(PORT, () => {
+    console.log(`The server is up and running on port ${PORT}`);
+  });
+})();
