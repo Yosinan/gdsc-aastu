@@ -38,7 +38,7 @@ const vipRoute = (req, res, next) => {
       if (user.password === password) {
         res.status(200).redirect("/index.html");
       } else {
-        res.status(401).redirect("/incorrect_password.html");
+        res.status(401).send('incorrect pass');
       }
     } else {
       res.status(404).redirect("/signup.html");
@@ -46,7 +46,7 @@ const vipRoute = (req, res, next) => {
   });
 
   app.get("/auth_only", (req, res) => {
-    res.status(200).redirect("/secret.html");
+    res.status(200).send('authorized');
   });
 
   const PORT = process.env.PORT || 3300;
