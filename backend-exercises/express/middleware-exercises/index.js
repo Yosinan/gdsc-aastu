@@ -6,10 +6,10 @@ const vipRoute = (req, res, next) => {
   const queryName = "vip_user";
   if (req.path === "/auth_only") {
     if (!req.query.name) {
-      return res.status(401).send("enter a name that is in the query string.");
+      return res.status(401).send("Enter a name that is in the query string.");
     }
     if (req.query.name !== expectedName) {
-      return res.status(403).redirect("/protected.html");
+      return res.status(403).send("not in a query");
     }
   }
   next();
@@ -38,7 +38,7 @@ const vipRoute = (req, res, next) => {
       if (user.password === password) {
         res.status(200).redirect("/index.html");
       } else {
-        res.status(401).redirect("/incorrect_password.html");
+        res.status(401).send("incorrect_password");
       }
     } else {
       res.status(404).redirect("/signup.html");
@@ -46,7 +46,7 @@ const vipRoute = (req, res, next) => {
   });
 
   app.get("/auth_only", (req, res) => {
-    res.status(200).redirect("/secret.html");
+    res.status(200).send("secret");
   });
 
   const PORT = process.env.PORT || 3300;
