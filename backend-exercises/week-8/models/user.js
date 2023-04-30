@@ -16,7 +16,11 @@ var UserSchema = new Schema({
     unique: true,
     lowercase: true,
     trim: true,
-    required: true
+    required: true,
+    match: [
+      /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/,
+      "Please enter a valid email address",
+    ],
   },
   hash_password: {
     type: String
@@ -32,4 +36,4 @@ UserSchema.methods.comparePassword = function(password) {
 };
 
 
-mongoose.model('User', UserSchema);
+export const User = mongoose.model('User', UserSchema);
