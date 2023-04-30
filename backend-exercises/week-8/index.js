@@ -1,33 +1,11 @@
 const express = require("express");
-const bcrypt = require("bcrypt");
+
 const jwt = require("jsonwebtoken");
+
+const bcrypt = require("bcrypt");
+
 const mongoose = require("mongoose");
-const color = require("colors");
 
-
-
-// const userSchema = mongoose.Schema({
-//   username: {
-//     type: String,
-//     required: true,
-//     uniqure: true,
-//   },
-//   email: {
-//     type: String,
-//     required: true,
-//     unique: true,
-//     match: [
-//       /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/,
-//       "Please enter a valid email address",
-//     ],
-//   },
-//   password: {
-//     type: String,
-//     required: true,
-//   },
-// });
-
-// const User = mongoose.model("User", userSchema);
 
 
 const hasher = async (req, res, next) => {
